@@ -1,8 +1,11 @@
 ﻿using System;
+using HomeMenu;
+
 namespace EditorHtml{
-    static class Program{
+    class Program{
         public static void Main(string[] args){
-            Menu.Show();
+            Home initialPage = new Home("v0.0.1", 30, 40);
+            initialPage.Start();
         }
     }
 }
