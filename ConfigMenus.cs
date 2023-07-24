@@ -26,7 +26,9 @@ namespace ConfigMenu{
             }
 
             public void ConfigConsole(System.ConsoleColor backgroundColor, System.ConsoleColor wordColor, int menuHeight, int menuWidth, string menuTitle){
-                Console.SetWindowSize(menuWidth+5, menuHeight+6);
+                if(OperatingSystem.IsWindows()){
+                    Console.SetWindowSize(menuWidth+5, menuHeight+6);
+                }
                 Console.BackgroundColor = backgroundColor;
                 Console.ForegroundColor = wordColor;
                 Console.Title = menuTitle;
