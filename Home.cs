@@ -3,19 +3,13 @@ using FileManager;
 using ConfigMenu;
 
 namespace HomeMenu{  
-    class Home{
-        private string version{get;set;}
-        private int height{get;set;}
-        private int width{get;set;}
-        public Home(string menuVersion, int menuHeight, int menuWidth){
-            version = menuVersion;
-            height = menuHeight;
-            width = menuWidth;
+    public class Home: ConfigMenu.CriarMenu{
+        private string version{get;}
+        public Home(string menuVersion) : base(30, 45, "MenuGB "+menuVersion, ConsoleColor.Blue, ConsoleColor.Black){
+            this.version = menuVersion;
         }
         public void Start(){
-
-            ConfigMenu.CriarMenu menu = new ConfigMenu.CriarMenu(30, 45, "MenuGB"+version, ConsoleColor.Blue, ConsoleColor.Black);
-            menu.Show();
+            Show();
             WriteOptions(30, 40);
             FileManager.FilesManager fileManager = new FilesManager();
 
@@ -26,12 +20,13 @@ namespace HomeMenu{
                     Environment.Exit(1);
                     break;
                 case 1:
-                    fileManager.NewFile("gb.txt");
+                    fileManager.NewFile("gb.txt", version);
                     break;
                 case 2:
+                    // Editar arquivo
                     break;
                 default:
-                    menu.Show();
+                    Show();
                     break;
             }
         }
@@ -46,7 +41,7 @@ namespace HomeMenu{
             Console.SetCursorPosition(3, 6);
             Console.WriteLine("1 - Novo Arquivo");
             Console.SetCursorPosition(3, 7);
-            Console.WriteLine("2 - Abrir");
+            Console.WriteLine("2 - Editar");
             Console.SetCursorPosition(3, 8);
             Console.WriteLine("0 - Sair");
             Console.SetCursorPosition(3, 10);
